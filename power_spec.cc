@@ -25,7 +25,7 @@ rarray<double,1> power_spec(const rarray<std::complex<double>,1>& f){
     
     for(int i=0; i<n_hat; i++)
     {
-        F[i] = std::complex::real(f_hat[i]*std::conj(f_hat[i]));
+        F[i] = real(f_hat[i]*std::conj(f_hat[i]));
     }
 
     return F;
