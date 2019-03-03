@@ -19,7 +19,7 @@ int  main() {
 	std::string FILEBASE = "/scinet/course/phy1610/gwdata";
 	std::string filename;
 
-	filename = FILEBASE + "GWprediction.nc"
+	filename = FILEBASE + "GWprediction.nc";
 	f = NC_reader(filename);
 
 	std::cout << f << std::endl;
