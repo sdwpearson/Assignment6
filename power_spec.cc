@@ -14,7 +14,7 @@
 
 rvector<double> power_spec(const rvector<std::complex<double>>& f){ 
     int n = f.size();
-    rvector<std::complex<double>> f_hat;
+    rvector<std::complex<double>> f_hat(n);
 
     fftw_plan p = fftw_plan_dft_1d(n,(fftw_complex*)f.data(), (fftw_complex*)f_hat.data(), FFTW_FORWARD, FFTW_ESTIMATE);
 
