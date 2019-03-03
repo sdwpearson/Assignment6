@@ -8,7 +8,7 @@ NETCDF_INC = /scinet/teach/software/2018a/opt/gcc-7.3.0/netcdf/4.6.1/include
 NETCDF_LIB = /scinet/teach/software/2018a/opt/gcc-7.3.0/netcdf/4.6.1/lib
 
 LDFLAGS=-g
-LDLIBS= 
+LDLIBS= -lnetcdf_c++4
 
 all: GW_matcher
 

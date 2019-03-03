@@ -17,7 +17,7 @@
 
 int  main() {
 	rarray<std::complex<double>,1> f;
-	std::string FILEBASE = "/scinet/course/phy1610/gwdata";
+	std::string FILEBASE = "/scinet/course/phy1610/gwdata/";
 	std::string filename;
 
 	filename = FILEBASE + "GWprediction.nc";
