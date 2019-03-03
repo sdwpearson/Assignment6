@@ -23,6 +23,9 @@ int  main() {
 
 	filename = FILEBASE + "GWprediction.nc";
 	f = NC_reader(filename.c_str());
+	
+	std::cout << f.size() << std::endl;
+
 	F = power_spec(f);
 
 	std::cout << F.size() << std::endl;

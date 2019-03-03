@@ -1,7 +1,7 @@
 CXX=g++
-CXXFLAGS=-std=c++11 -g -O3 -march=native
+CXXFLAGS=-std=c++11 -g -O0 -march=native
 CXXTESTFLAGS=-std=c++11 -g 
-CXXFLAGS=-std=c++11 -g -O2 -march=native -ftree-vectorize -Wall
+CXXFLAGS=-std=c++11 -g -O0 -march=native -ftree-vectorize -Wall
 
 # netCDF includes and libraries for it to function
 NETCDF_INC = /scinet/teach/software/2018a/opt/gcc-7.3.0/netcdf/4.6.1/include
