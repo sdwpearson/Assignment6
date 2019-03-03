@@ -7,15 +7,19 @@
 
 #include <rarray>
 #include <netcdf>
-#include <iostream>
-#include <vector>
+#include <complex>
 #include "NC_reader.h"
 
-using namespace netCDF;
-using namespace netCDF::exceptions;
+rarray<std::complex<double>,1>* NC_reader(const char* filename){ 
+    
+    netCDF::NcFile file(filename, netCDF::NcFile::read);
+    
+    rarray<std::complex<double>,1> f_nc(file.getDim("nt").getSize());
+    
+    file.getVar("f").getVar(&f_nc[0]);
 
-void NC_reader(const rarray<double,1>& x, const char* filename, int length, const double t, const double INITIAL_Z0){ 
-            
+    return f_nc;
+
     // The file will be automatically closed when the NcFile object goes
     // out of scope. This frees up any internal netCDF resources
     // associated with the file, and flushes any buffers.
