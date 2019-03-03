@@ -12,6 +12,6 @@
 #include <rarray>
 #include <complex>
 
-rarray<std::complex<double>,1> NC_reader(const char* filename);
+rvector<std::complex<double>> NC_reader(const char* filename);
 
 #endif

@@ -12,9 +12,9 @@
 #include <fftw3.h>
 #include "power_spec.h"
 
-rarray<double,1> power_spec(const rarray<std::complex<double>,1>& f){ 
+rvector<double> power_spec(const rvector<std::complex<double>>& f){ 
     int n = f.size();
-    rarray<std::complex<double>,1> f_hat;
+    rvector<std::complex<double>> f_hat;
 
     fftw_plan p = fftw_plan_dft_1d(n,(fftw_complex*)f.data(), (fftw_complex*)f_hat.data(), FFTW_FORWARD, FFTW_ESTIMATE);
 
@@ -25,7 +25,7 @@ rarray<double,1> power_spec(const rarray<std::complex<double>,1>& f){
 
     std::cout << n_hat << std::endl;
 
-    rarray<double,1> F(n_hat);
+    rvector<double> F(n_hat);
     
     for(int i=0; i<n_hat; i++)
     {

@@ -10,11 +10,11 @@
 #include <complex>
 #include "NC_reader.h"
 
-rarray<std::complex<double>,1> NC_reader(const char* filename){ 
+rvector<std::complex<double>> NC_reader(const char* filename){ 
     
     netCDF::NcFile file(filename, netCDF::NcFile::read);
     
-    rarray<std::complex<double>,1> f_nc(file.getDim("nt").getSize());
+    rvector<std::complex<double>> f_nc(file.getDim("nt").getSize());
     
     file.getVar("f").getVar(&f_nc[0]);
 
