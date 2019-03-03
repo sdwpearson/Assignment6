@@ -25,7 +25,6 @@ int  main() {
 	f = NC_reader(filename.c_str());
 	F = power_spec(f);
 
-	std::cout << F << std::endl;
 	std::cout << F.size() << std::endl;
 
 	return 0;
