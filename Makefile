@@ -24,10 +24,10 @@ corr_coeff.o: corr_coeff.cc corr_coeff.h
 NC_reader.o: NC_reader.cc NC_reader.h
 	${CXX} ${CXXFLAGS} -I${NETCDF_INC} -c -o $@ $<
 
-GW_matcher.o: MZA.cc NC_reader.h corr_coeff.h power_spec.h
+GW_matcher.o: GW_matcher.cc NC_reader.h corr_coeff.h power_spec.h
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-GW_matcher: MZA.o NC_reader.o corr_coeff.o power_spec.o
+GW_matcher: GW_matcher.o NC_reader.o corr_coeff.o power_spec.o
 	${CXX} ${LDFLAGS} -L${NETCDF_LIB} -o $@ $^ ${LDLIBS}
 
 run: GW_matcher
@@ -35,7 +35,7 @@ run: GW_matcher
 
 help:
 	@echo Type:
-	@echo " 'make all'                	to compile the MZA application;"
+	@echo " 'make all'                	to compile the GW_matcher application;"
 	@echo " 'make clean'            	to remove output files;"
 	@echo " 'make power_spec.o'         to compile the power_spec module;"
 	@echo " 'make corr_coeff.o			to compile the corr_coeff module;"
