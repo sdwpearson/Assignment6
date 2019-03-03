@@ -11,7 +11,8 @@
 #define POWER_SPEC_H
 
 #include <rarray>
+#include <complex>
 
-void power_spec(const rarray<double,1>& x,  const char* filename, int length, const double t, const double INITIAL_Z0);
+rarray<double,1> power_spec(const rarray<std::complex<double>,1>& f);
 
 #endif

@@ -17,13 +17,16 @@
 
 int  main() {
 	rarray<std::complex<double>,1> f;
+	rarray<double,1> F;
 	std::string FILEBASE = "/scinet/course/phy1610/gwdata/";
 	std::string filename;
 
 	filename = FILEBASE + "GWprediction.nc";
 	f = NC_reader(filename.c_str());
+	F = power_spec(f);
 
-	std::cout << f << std::endl;
+	std::cout << F << std::endl;
+	std::cout << F.size() << std::endl;
 
 	return 0;
 }
