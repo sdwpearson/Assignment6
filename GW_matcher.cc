@@ -18,7 +18,7 @@ int  main() {
 	rarray<std::complex<double>,1>* f;
 	std::string filename;
 
-	filname = FILEBASE + "GWprediction.nc"
+	filename = FILEBASE + "GWprediction.nc"
 	f = NC_reader(filename);
 
 	std::cout << f[0] << std::endl;

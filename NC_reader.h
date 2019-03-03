@@ -10,7 +10,8 @@
 #define NCREADER_H
 
 #include <rarray>
+#include <complex>
 
-void NC_reader(const rarray<double,1>& x,  const char* filename, int length, const double t, const double INITIAL_Z0);
+rarray<std::complex<double>,1>* NC_reader(const char* filename);
 
 #endif
