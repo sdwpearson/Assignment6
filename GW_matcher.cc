@@ -9,6 +9,7 @@
 #include <rarray>
 #include <rarrayio>
 #include <complex>
+#include <string.h>
 #include "NC_reader.h"
 #include "power_spec.h"
 #include "corr_coeff.h"
