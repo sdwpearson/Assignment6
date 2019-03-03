@@ -8,6 +8,7 @@
 
 #include <rarray>
 #include <complex>
+#include <fftw3.h>
 #include "power_spec.h"
 
 rarray<double,1> power_spec(const rarray<std::complex<double>,1>& f){ 
