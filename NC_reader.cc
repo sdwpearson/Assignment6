@@ -10,7 +10,7 @@
 #include <complex>
 #include "NC_reader.h"
 
-rarray<std::complex<double>,1> NC_reader(const std::string filename){ 
+rarray<std::complex<double>,1> NC_reader(const char* filename){ 
     
     netCDF::NcFile file(filename, netCDF::NcFile::read);
     

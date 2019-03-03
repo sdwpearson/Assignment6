@@ -16,10 +16,11 @@
 
 int  main() {
 	rarray<std::complex<double>,1> f;
-	std::string FILEBASE = "/scinet/course/phy1610/gwdata";
-	std::string filename;
+	char* FILEBASE = "/scinet/course/phy1610/gwdata";
+	char* filename;
 
-	filename = FILEBASE + "GWprediction.nc";
+	strcpy(filename, FILEBASE);
+	strcat(filename,"GWprediction.nc");
 	f = NC_reader(filename);
 
 	std::cout << f << std::endl;
