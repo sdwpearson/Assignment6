@@ -8,34 +8,41 @@ NETCDF_INC = /scinet/teach/software/2018a/opt/gcc-7.3.0/netcdf/4.6.1/include
 NETCDF_LIB = /scinet/teach/software/2018a/opt/gcc-7.3.0/netcdf/4.6.1/lib
 
 LDFLAGS=-g
-LDLIBS= -lnetcdf_c++4
-LDBOOST = -lboost_unit_test_framework
+LDLIBS= 
 
-all: MZA
+all: GW_matcher
 
 clean: 
-	\rm -f report.o MZA.o MZA.nc
+	\rm -f NC_reader.o GW_matcher.o corr_coeff.o power_spec.o
 
-report.o: report.cc report.h
-	${CXX} ${CXXFLAGS} -I${NETCDF_INC} -c -o $@ $<
-
-MZA.o: MZA.cc report.h
+power_spec.o: power_spec.cc power_spec.h
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-MZA: MZA.o report.o
+corr_coeff.o: corr_coeff.cc corr_coeff.h
+	${CXX} ${CXXFLAGS} -c -o $@ $<
+
+NC_reader.o: NC_reader.cc NC_reader.h
+	${CXX} ${CXXFLAGS} -I${NETCDF_INC} -c -o $@ $<
+
+GW_matcher.o: MZA.cc NC_reader.h corr_coeff.h power_spec.h
+	${CXX} ${CXXFLAGS} -c -o $@ $<
+
+GW_matcher: MZA.o NC_reader.o corr_coeff.o power_spec.o
 	${CXX} ${LDFLAGS} -L${NETCDF_LIB} -o $@ $^ ${LDLIBS}
 
-run: MZA
-	./MZA
+run: GW_matcher
+	./GW_matcher
 
 help:
 	@echo Type:
 	@echo " 'make all'                	to compile the MZA application;"
 	@echo " 'make clean'            	to remove output files;"
-	@echo " 'make report.o'            	to compile the reporting module;"
-	@echo " 'make MZA.o'            	to compile the MZA linking files;"
-	@echo " 'make MZA'            		to compile the MZA application;"
-	@echo " 'make run'	            	to run the MZA application;"
+	@echo " 'make power_spec.o'         to compile the power_spec module;"
+	@echo " 'make corr_coeff.o			to compile the corr_coeff module;"
+	@echo " 'make NC_reader.o'          to compile the NC_reader module;"
+	@echo " 'make GW_matcher.o'         to compile the GW_matcher linking files;"
+	@echo " 'make GW_matcher'           to compile the GW_matcher application;"
+	@echo " 'make run'	            	to run the GW_matcher application;"
 
 
 
