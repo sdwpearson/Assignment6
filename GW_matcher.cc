@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <rarray>
+#include <rarrayio>
 #include <complex>
 #include "NC_reader.h"
 #include "power_spec.h"
@@ -15,16 +16,13 @@
 #define FILEBASE "/scinet/course/phy1610/gwdata"
 
 int  main() {
-	rarray<std::complex<double>,1>* f;
+	rarray<std::complex<double>,1> f;
 	std::string filename;
 
 	filename = FILEBASE + "GWprediction.nc"
 	f = NC_reader(filename);
 
-	std::cout << f[0] << std::endl;
-	std::cout << f[1] << std::endl;
-	std::cout << f[2] << std::endl;
-	std::cout << f[3] << std::endl;
+	std::cout << f << std::endl;
 
 	return 0;
 }
