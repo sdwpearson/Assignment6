@@ -55,13 +55,13 @@ int  main() {
 	// Sort the C's 
 	for(int i = 0; i<NUM_WAVES; i++){
 		for(int j = 0; j<NUM_WAVES; j++){
-			if(C[i] > C_sorted[1, j]){
+			if(C[i] > C_sorted[1][j]){
 				for(int k = NUM_WAVES-1; k>=j; k--){
-					C_sorted[1,k] = C_sorted[1,k-1];
-					C_sorted[2,k] = C_sorted[2,k-1];
+					C_sorted[1][k] = C_sorted[1][k-1];
+					C_sorted[2][k] = C_sorted[2][k-1];
 				}
-				C_sorted[1,j] = C[i];
-				C_sorted[2,j] = i;
+				C_sorted[1][j] = C[i];
+				C_sorted[2][j] = i;
 			}				
 		}
 	}
