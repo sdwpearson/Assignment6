@@ -11,6 +11,7 @@
 
 void output_topfive(rvector<double>& C){
 	waves = C.size();
+	std::string filename;
 	rarray<double,2> C_sorted(2, waves);	// Sorted array of all the correlation coefficients and their indices	
 
 	// Sort the Cs into C_sorted which also keeps track to the original wave index
