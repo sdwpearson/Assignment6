@@ -71,12 +71,12 @@ int  main() {
 	std::cout << std::endl << "The five most significant candidates are:" << std::endl;
 	for(int i=0; i<5; i++){
 		filename = "";
-		if (C[1][i] < 9)
-			filename = "detection0" + std::to_string((int)C[1][i]) + ".nc";
+		if (C_sorted[1][i] < 9)
+			filename = "detection0" + std::to_string((int)C_sorted[1][i]) + ".nc";
 		else
-			filename = "detection" + std::to_string((int)C[1][i]) + ".nc";
+			filename = "detection" + std::to_string((int)C_sorted[1][i]) + ".nc";
 
-		std::cout << filename << " with correlation coefficient = " << C[0][i] << std::endl;
+		std::cout << filename << " with correlation coefficient = " << C_sorted[0][i] << std::endl;
 	}
 
 	return 0;
