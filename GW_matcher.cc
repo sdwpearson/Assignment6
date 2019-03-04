@@ -34,7 +34,7 @@ int  main() {
 
 	for(int i = 0; i<NUM_WAVES; i++){
 		filename = "";
-		if (i < 10)
+		if (i < 9)
 			filename = FILEBASE + "detection0" + std::to_string(i+1) + ".nc";
 		else
 			filename = FILEBASE + "detection" + std::to_string(i+1) + ".nc";
