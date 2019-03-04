@@ -38,6 +38,7 @@ void output_topfive(rvector<double>& C){
 	// Output the five most significant candidates
 	std::cout << std::endl << "The five most significant candidates are:" << std::endl;
 	for(int i=0; i<5; i++){
+		// Print the correct filename to identify the wave
 		filename = "";
 		if (C_sorted[1][i] < 9)
 			filename = "detection0" + std::to_string((int)C_sorted[1][i]) + ".nc";

@@ -3,10 +3,6 @@ CXXFLAGS=-std=c++11 -g -O0 -march=native
 CXXTESTFLAGS=-std=c++11 -g 
 CXXFLAGS=-std=c++11 -g -O0 -march=native -ftree-vectorize -Wall
 
-# netCDF includes and libraries for it to function
-NETCDF_INC = /scinet/teach/software/2018a/opt/gcc-7.3.0/netcdf/4.6.1/include
-NETCDF_LIB = /scinet/teach/software/2018a/opt/gcc-7.3.0/netcdf/4.6.1/lib
-
 LDFLAGS=-g
 LDLIBS= -lnetcdf_c++4 -lfftw3 -lopenblas
 
@@ -41,6 +37,7 @@ help:
 	@echo " 'make all'                	to compile the GW_matcher application;"
 	@echo " 'make clean'            	to remove output files;"
 	@echo " 'make power_spec.o'         to compile the power_spec module;"
+	@echo " 'make output_topfive.o'     to compile the output_topfive module;"
 	@echo " 'make corr_coeff.o			to compile the corr_coeff module;"
 	@echo " 'make NC_reader.o'          to compile the NC_reader module;"
 	@echo " 'make GW_matcher.o'         to compile the GW_matcher linking files;"

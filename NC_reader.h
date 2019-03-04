@@ -3,8 +3,8 @@
 // Date: March 3, 2019
 // PHY1610 Assignment 6
 //
-// Description: This file reads in the NetCDF file containing the gravitational wave.
-
+// Description: This file reads in the NetCDF file containing the gravitational wave and 
+// returns an array of the complex data.
 
 #ifndef NCREADER_H
 #define NCREADER_H
