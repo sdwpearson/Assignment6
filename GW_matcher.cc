@@ -45,7 +45,7 @@ int  main() {
 		C[i] = corr_coeff(F, G);
 
 		std::cout << "--------------- Wave Number " + std::to_string(i+1) + " ---------------" << std::endl;
- 		std::cout << C[i] << std::endl;
+ 		std::cout << "correlation coefficient = " << C[i] << std::endl;
 
 		// Clear the vectors we compare against
 		g.clear();
