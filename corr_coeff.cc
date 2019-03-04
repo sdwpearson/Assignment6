@@ -16,7 +16,7 @@ double corr_coeff(const rvector<double>& F, const rvector<double>& G){
     double C = 0.0;
     int length = F.size();
     
-    C = cblas_cdot(length, F.data(), 1, G.data(), 1);
+    C = cblas_ddot(length, F.data(), 1, G.data(), 1);
 
     return C;
 }
