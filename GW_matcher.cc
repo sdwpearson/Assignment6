@@ -14,29 +14,41 @@
 #include "power_spec.h"
 #include "corr_coeff.h"
 
+#define NUM_WAVES 32
 
 int  main() {
-	rvector<std::complex<double>> f;
-	rvector<double> F;
-	rvector<std::complex<double>> g;
-	rvector<double> G;
-	double C;
+	rvector<std::complex<double>> f;	// Original wave to compare against
+	rvector<double> F;					// Power spectrum of comparison wave
+	rvector<std::complex<double>> g;	// Individual wave to compare against
+	rvector<double> G;					// Power spectrum of the individual wave
+	rvector<double> C(NUM_WAVES);		// Vector of all the correlation coefficients
+
+	// File base for all of the waves
 	std::string FILEBASE = "/scinet/course/phy1610/gwdata/";
 	std::string filename;
 
+
 	filename = FILEBASE + "GWprediction.nc";
 	f = NC_reader(filename.c_str());
-
-	filename = "";
-	filename = FILEBASE + "detection01.nc";
-	g = NC_reader(filename.c_str());
-
 	F = power_spec(f);
-	G = power_spec(g);
 
-	C = corr_coeff(F, G);
+	for(int i = 0; i<NUM_WAVES; i++){
+		filename = "";
+		if (i < 10)
+			filename = FILEBASE + "detection0" + std::to_string(i) + ".nc";
+		else
+			filename = FILEBASE + "detection" + std::to_string(i) + ".nc";
 
-	std::cout << C << std::endl;
+		g = NC_reader(filename.c_str());
+		G = power_spec(g);
+		C[i] = corr_coeff(F, G);
+
+		std::cout << C << std::endl;
+
+		// Clear the vectors we compare against
+		g.clear();
+		G.clear();
+	}
 
 	return 0;
 }
