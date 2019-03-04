@@ -15,10 +15,10 @@ all: GW_matcher
 clean: 
 	\rm -f NC_reader.o GW_matcher.o corr_coeff.o power_spec.o
 
-output_top5.o: output_top5.cc output_top5.h
-	${CXX} ${CXXFLAGS} -c -o $@ $<
-
 power_spec.o: power_spec.cc power_spec.h
+	${CXX} ${CXXFLAGS} -c -o $@ $<
+	
+output_top5.o: output_top5.cc output_top5.h
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 corr_coeff.o: corr_coeff.cc corr_coeff.h

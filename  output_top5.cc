@@ -7,6 +7,7 @@
 
 #include <rarray>
 #include <iostream>
+#include "output_top5.h"
 
 void output_top5(rvector<double>& C){
 	waves = C.size();
