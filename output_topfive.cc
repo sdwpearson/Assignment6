@@ -10,7 +10,7 @@
 #include "output_topfive.h"
 
 void output_topfive(rvector<double>& C){
-	waves = C.size();
+	int waves = C.size();
 	std::string filename;
 	rarray<double,2> C_sorted(2, waves);	// Sorted array of all the correlation coefficients and their indices	
 
