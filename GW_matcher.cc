@@ -52,7 +52,7 @@ int  main() {
 		G.clear();
 	}
 
-	// Sort the C's 
+	// Sort the Cs 
 	for(int i = 0; i<NUM_WAVES; i++){
 		for(int j = 0; j<NUM_WAVES; j++){
 			if(C[i] > C_sorted[0][j]){
@@ -62,6 +62,8 @@ int  main() {
 				}
 				C_sorted[0][j] = C[i];
 				C_sorted[1][j] = i;
+
+				break;
 			}				
 		}
 	}
