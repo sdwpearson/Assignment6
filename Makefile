@@ -28,7 +28,7 @@ GW_matcher.o: GW_matcher.cc NC_reader.h corr_coeff.h power_spec.h
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 GW_matcher: GW_matcher.o NC_reader.o corr_coeff.o power_spec.o
-	${CXX} ${LDFLAGS} -L${NETCDF_LIB} -L{BLAS_LIB} -o $@ $^ ${LDLIBS}
+	${CXX} ${LDFLAGS} -L${NETCDF_LIB} -L${BLAS_LIB} -o $@ $^ ${LDLIBS}
 
 run: GW_matcher
 	./GW_matcher
