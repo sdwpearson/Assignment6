@@ -17,8 +17,8 @@ clean:
 
 power_spec.o: power_spec.cc power_spec.h
 	${CXX} ${CXXFLAGS} -c -o $@ $<
-	
-output_top5.o: output_top5.cc output_top5.h
+
+output_topfive.o: output_topfive.cc output_topfive.h
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 corr_coeff.o: corr_coeff.cc corr_coeff.h
@@ -27,10 +27,10 @@ corr_coeff.o: corr_coeff.cc corr_coeff.h
 NC_reader.o: NC_reader.cc NC_reader.h
 	${CXX} ${CXXFLAGS} -I${NETCDF_INC} -c -o $@ $<
 
-GW_matcher.o: GW_matcher.cc NC_reader.h corr_coeff.h power_spec.h output_top5.h
+GW_matcher.o: GW_matcher.cc NC_reader.h corr_coeff.h power_spec.h output_topfive.h
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-GW_matcher: GW_matcher.o NC_reader.o corr_coeff.o power_spec.o output_top5.o
+GW_matcher: GW_matcher.o NC_reader.o corr_coeff.o power_spec.o output_topfive.o
 	${CXX} ${LDFLAGS} -L${NETCDF_LIB} -L${BLAS_LIB} -o $@ $^ ${LDLIBS}
 
 run: GW_matcher

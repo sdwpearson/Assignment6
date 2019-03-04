@@ -14,7 +14,7 @@
 #include "NC_reader.h"
 #include "power_spec.h"
 #include "corr_coeff.h"
-#include "output_top5.h"
+#include "output_topfive.h"
 
 // Number of canditate waves
 #define NUM_WAVES 32
@@ -62,7 +62,7 @@ int  main() {
 	}
 
 	// Output the top 5 to the terminal
-	output_top5(C);
+	output_topfive(C);
 
 	return 0;
 }

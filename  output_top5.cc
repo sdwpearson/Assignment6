@@ -1,4 +1,4 @@
-// output_top5.cc
+// output_topfive.cc
 // Author: Stewart Pearson
 // Date: March 3, 2019
 // PHY1610 Assignment 6
@@ -7,9 +7,9 @@
 
 #include <rarray>
 #include <iostream>
-#include "output_top5.h"
+#include "output_topfive.h"
 
-void output_top5(rvector<double>& C){
+void output_topfive(rvector<double>& C){
 	waves = C.size();
 	rarray<double,2> C_sorted(2, waves);	// Sorted array of all the correlation coefficients and their indices	
 
