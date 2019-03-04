@@ -8,7 +8,7 @@ NETCDF_INC = /scinet/teach/software/2018a/opt/gcc-7.3.0/netcdf/4.6.1/include
 NETCDF_LIB = /scinet/teach/software/2018a/opt/gcc-7.3.0/netcdf/4.6.1/lib
 
 LDFLAGS=-g
-LDLIBS= -lnetcdf_c++4 -lfftw3
+LDLIBS= -lnetcdf_c++4 -lfftw3 -lopenblas
 
 all: GW_matcher
 
@@ -19,7 +19,7 @@ power_spec.o: power_spec.cc power_spec.h
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 corr_coeff.o: corr_coeff.cc corr_coeff.h
-	${CXX} ${CXXFLAGS} -c -o $@ $<
+	${CXX} ${CXXFLAGS} -I${BLAS_INC} -c -o $@ $<
 
 NC_reader.o: NC_reader.cc NC_reader.h
 	${CXX} ${CXXFLAGS} -I${NETCDF_INC} -c -o $@ $<
@@ -28,7 +28,7 @@ GW_matcher.o: GW_matcher.cc NC_reader.h corr_coeff.h power_spec.h
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 GW_matcher: GW_matcher.o NC_reader.o corr_coeff.o power_spec.o
-	${CXX} ${LDFLAGS} -L${NETCDF_LIB} -o $@ $^ ${LDLIBS}
+	${CXX} ${LDFLAGS} -L${NETCDF_LIB} -L{BLAS_LIB} -o $@ $^ ${LDLIBS}
 
 run: GW_matcher
 	./GW_matcher

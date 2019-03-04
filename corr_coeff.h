@@ -12,6 +12,6 @@
 
 #include <rarray>
 
-void corr_coeff(const rarray<double,1>& x,  const char* filename, int length, const double t, const double INITIAL_Z0);
+double corr_coeff(const rvector<double>& F, const rvector<double>& G);
 
 #endif

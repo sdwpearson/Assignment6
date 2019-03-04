@@ -18,17 +18,18 @@
 int  main() {
 	rvector<std::complex<double>> f;
 	rvector<double> F;
+	double C;
 	std::string FILEBASE = "/scinet/course/phy1610/gwdata/";
 	std::string filename;
 
 	filename = FILEBASE + "GWprediction.nc";
 	f = NC_reader(filename.c_str());
 
-	std::cout << f.size() << std::endl;
-
 	F = power_spec(f);
 
-	std::cout << F.size() << std::endl;
+	C = corr_coeff(F, G);
+
+	std::cout << C << std::endl;
 
 	return 0;
 }

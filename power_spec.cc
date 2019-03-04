@@ -23,8 +23,6 @@ rvector<double> power_spec(const rvector<std::complex<double>>& f){
 
     int n_hat = f_hat.size();
 
-    std::cout << n_hat << std::endl;
-
     rvector<double> F(n_hat);
     
     for(int i=0; i<n_hat; i++)

@@ -7,13 +7,16 @@
 // power spectrums and returns it
 
 #include <rarray>
-#include <netcdf>
 #include <iostream>
-#include <vector>
+#include <cblas.h>
 #include "corr_coeff.h"
 
 
-void corr_coeff(const rarray<double,1>& x, const char* filename, int length, const double t, const double INITIAL_Z0){ 
-
+double corr_coeff(const rvector<double>& F, const rvector<double>& G){ 
+    double C = 0.0;
+    int length = F.size();
     
+    C = cblas_cdot(length, F.data(), 1, G.data(), 1);
+
+    return C;
 }
