@@ -4,6 +4,7 @@
 // PHY1610 Assignment 6
 //
 // Description: This file attempts to match sample gravity wave power spectrums to a given gravity wave power spectrum.
+// It will then output all of the correlation coefficients and then the top five candidates in the terminal.
 
 #include <iostream>
 #include <rarray>
@@ -13,7 +14,9 @@
 #include "NC_reader.h"
 #include "power_spec.h"
 #include "corr_coeff.h"
+#include "output_top5.h"
 
+// Number of canditate waves
 #define NUM_WAVES 32
 
 int  main() {
@@ -22,28 +25,34 @@ int  main() {
 	rvector<std::complex<double>> g;			// Individual wave to compare against
 	rvector<double> G;							// Power spectrum of the individual wave
 	rvector<double> C(NUM_WAVES);				// Vector of all the correlation coefficients
-	rarray<double,2> C_sorted(2, NUM_WAVES);	// Sorted array of all the correlation coefficients
 
 	// File base for all of the waves
 	std::string FILEBASE = "/scinet/course/phy1610/gwdata/";
+
+	// Total filename for each netCDF file
 	std::string filename;
 
-
+	// Start by getting the power spectrum for the prediction wave 
 	filename = FILEBASE + "GWprediction.nc";
 	f = NC_reader(filename.c_str());
 	F = power_spec(f);
 
+	// Loop through all of the sample waves and compute their correlation coefficient.
 	for(int i = 0; i<NUM_WAVES; i++){
 		filename = "";
+
+		// Get the correct netCDF filename
 		if (i < 9)
 			filename = FILEBASE + "detection0" + std::to_string(i+1) + ".nc";
 		else
 			filename = FILEBASE + "detection" + std::to_string(i+1) + ".nc";
 
+		// Compute the power spectrum and then store the correlation coefficient in C
 		g = NC_reader(filename.c_str());
 		G = power_spec(g);
 		C[i] = corr_coeff(F, G);
 
+		// Output the correlation coefficient
 		std::cout << "--------------- Wave Number " + std::to_string(i+1) + " ---------------" << std::endl;
  		std::cout << "correlation coefficient = " << C[i] << std::endl;
 
@@ -52,32 +61,8 @@ int  main() {
 		G.clear();
 	}
 
-	// Sort the Cs 
-	for(int i = 0; i<NUM_WAVES; i++){
-		for(int j = 0; j<NUM_WAVES; j++){
-			if(C[i] > C_sorted[0][j]){
-				for(int k = NUM_WAVES-1; k>=j; k--){
-					C_sorted[0][k] = C_sorted[0][k-1];
-					C_sorted[1][k] = C_sorted[1][k-1];
-				}
-				C_sorted[0][j] = C[i];
-				C_sorted[1][j] = i+1;
-
-				break;
-			}				
-		}
-	}
-
-	std::cout << std::endl << "The five most significant candidates are:" << std::endl;
-	for(int i=0; i<5; i++){
-		filename = "";
-		if (C_sorted[1][i] < 9)
-			filename = "detection0" + std::to_string((int)C_sorted[1][i]) + ".nc";
-		else
-			filename = "detection" + std::to_string((int)C_sorted[1][i]) + ".nc";
-
-		std::cout << filename << " with correlation coefficient = " << C_sorted[0][i] << std::endl;
-	}
+	// Output the top 5 to the terminal
+	output_top5(C);
 
 	return 0;
 }
