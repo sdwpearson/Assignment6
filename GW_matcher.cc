@@ -17,11 +17,12 @@
 #define NUM_WAVES 32
 
 int  main() {
-	rvector<std::complex<double>> f;	// Original wave to compare against
-	rvector<double> F;					// Power spectrum of comparison wave
-	rvector<std::complex<double>> g;	// Individual wave to compare against
-	rvector<double> G;					// Power spectrum of the individual wave
-	rvector<double> C(NUM_WAVES);		// Vector of all the correlation coefficients
+	rvector<std::complex<double>> f;			// Original wave to compare against
+	rvector<double> F;							// Power spectrum of comparison wave
+	rvector<std::complex<double>> g;			// Individual wave to compare against
+	rvector<double> G;							// Power spectrum of the individual wave
+	rvector<double> C(NUM_WAVES);				// Vector of all the correlation coefficients
+	rarray<double,2> C_sorted(2, NUM_WAVES);	// Sorted array of all the correlation coefficients
 
 	// File base for all of the waves
 	std::string FILEBASE = "/scinet/course/phy1610/gwdata/";
@@ -43,12 +44,30 @@ int  main() {
 		G = power_spec(g);
 		C[i] = corr_coeff(F, G);
 
-		std::cout << C << std::endl;
+		std::cout << "--------------- Wave Number " + std::to_string(i+1) + " ---------------" << std::endl;
+ 		std::cout << C[i] << std::endl;
 
 		// Clear the vectors we compare against
 		g.clear();
 		G.clear();
 	}
+
+	// Sort the C's 
+	for(int i = 0; i<NUM_WAVES; i++){
+		for(int j = 0; j<NUM_WAVES; j++){
+			if(C[i] > C_sorted[j]){
+				for(int k = NUM_WAVES-1; k>=j; k--){
+					C_sorted[1,k] = C_sorted[1,k-1];
+					C_sorted[2,k] = C_sorted[2,k-1];
+				}
+				C_sorted[1,j] = C[i];
+				C_sorted[2,j] = i;
+			}				
+		}
+	}
+
+	std::cout << std::endl << "Sorted C" << std::endl;
+	std::cout << C_sorted << std::endl;
 
 	return 0;
 }
